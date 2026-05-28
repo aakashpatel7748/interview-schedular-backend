@@ -1,4 +1,5 @@
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import express from "express";
 import { genetatedErrors } from './middleware/errors.js';
 import authRoutes from "./routes/auth.js";
