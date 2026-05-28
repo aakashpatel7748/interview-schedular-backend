@@ -1,13 +1,13 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
+import connectToDatabase from "./db/Database.js";
 import { genetatedErrors } from './middleware/errors.js';
 import authRoutes from "./routes/auth.js";
 import bookingRoutes from "./routes/bookings.js";
 import notificationRoutes from "./routes/notifications.js";
 import slotRoutes from "./routes/slots.js";
 import ErrorHandler from "./utils/ErrorHandler.js";
-import connectToDatabase from "./db/Database.js";
 
 const app = express();
 
