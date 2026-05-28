@@ -7,8 +7,20 @@ import bookingRoutes from "./routes/bookings.js";
 import notificationRoutes from "./routes/notifications.js";
 import slotRoutes from "./routes/slots.js";
 import ErrorHandler from "./utils/ErrorHandler.js";
+import connectToDatabase from "./db/Database.js";
 
 const app = express();
+
+// Ensure database connection is active before processing any requests (Crucial for Serverless Vercel context)
+app.use(async (req, res, next) => {
+    try {
+        await connectToDatabase();
+        next();
+    } catch (err) {
+        console.error("Database connection middleware error:", err.message);
+        next(new ErrorHandler("Database connection could not be established", 500));
+    }
+});
 
 // Request Logger Middleware
 app.use((req, res, next) => {
