@@ -55,7 +55,7 @@ userSchema.methods.getJwtToken = async function () {
             id: this._id,
             role: this.role,
         },
-        process.env.jWt_SECRET,
+        process.env.JWT_SECRET,
         {
             expiresIn: process.env.JWT_EXPIRE,
         })
