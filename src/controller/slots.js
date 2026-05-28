@@ -119,7 +119,6 @@ export const deleteSlot = catchAsyncError(async (req, res, next) => {
   const TAG = "Delete Slot"
   logger.info(TAG)
      const slot = await InterviewSlot.findById(req.params.id);
-    const slot = await InterviewSlot.findById(req.params.id);
 
     if (!slot) {
       return next(new ErrorHandler('Slot not found'));
