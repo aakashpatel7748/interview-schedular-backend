@@ -7,15 +7,16 @@ const router = express.Router();
 // get user details
 router.get('/get-user',isAuthenticated,authContoller);
 
-// user signup
+// user signup / register
 router.post('/signup',authContoller);
+router.post('/register',authContoller);
 
-// user signin
+// user signin / login
 router.post('/signin',authContoller);
+router.post('/login',authContoller);
 
-// user signout
+// user signout / logout
 router.post('/signout',authContoller);
-
-
+router.post('/logout',authContoller);
 
 export default router;

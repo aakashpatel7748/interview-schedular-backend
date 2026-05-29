@@ -7,7 +7,20 @@ import { sendToken } from "../utils/SendToken.js";
 
 
 export const authContoller = catchAsyncError(async (req, res, next) => {
-    const { actionType } = req.query;
+    let actionType = req.query.actionType;
+
+    // Fallback: Infer action type from request path if not provided in query (e.g. from verify.js or REST calls)
+    if (!actionType && req.path) {
+        if (req.path.includes("signup") || req.path.includes("register")) {
+            actionType = "save";
+        } else if (req.path.includes("signin") || req.path.includes("login")) {
+            actionType = "login";
+        } else if (req.path.includes("logout") || req.path.includes("signout")) {
+            actionType = "logout";
+        } else if (req.path.includes("get-user")) {
+            actionType = "getUser";
+        }
+    }
 
     if (actionType == "getUser") {
         const TAG = "Get User Details"
